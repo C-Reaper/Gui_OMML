@@ -1,193 +1,79 @@
-# Gui_OMML
+# Project README
 
+## Overview
+This project is a C application that demonstrates the backup options for data on a PC, using multiple methods such as USB debugging, Mi Cloud Backup, and ADB. The application supports different platforms including Linux, Windows, Wine, and WebAssembly.
 
-## Project Overview
+## Features
+- Supports USB debugging to transfer files directly from devices.
+- Offers backup through Mi Cloud.
+- Utilizes ADB (Android Debug Bridge) for backups on Android devices.
+- Built using C/C++ with support for multiple operating systems.
 
-This project implements specialized functionality related to omml.
-
-## Core Components
-
-### Main Functionality
-- Implements core algorithms for omml
-- Efficient data structures
-- Optimized performance
-- Clean code organization
-
-### Technical Features
-- C/C++ implementation
-- Dynamic memory management
-- Platform-independent design
-- Real-time capable
-
-### Architecture
-- Module separation
-- Clear interface design
-- Proper abstraction layers
-- Extensible design
-
-## Use Cases
-- Production systems
-- Educational purposes
-- Research applications
-- Performance-critical operations
-
-## Performance Characteristics
-- Optimized algorithms
-- Efficient memory usage
-- Scalable architecture
-- Minimal overhead
-
-## Implementation Quality
-- Well-organized code
-- Meaningful naming
-- Proper error handling
-- Memory management
-
-## Build and Deployment
-- Standard C/C++ compilation
-- Makefile-based building
-- Cross-platform support
-- Easy integration
-
-
-## Building the Project
+## Project Structure
+```
+<Project>/
+├── build/              # .exe and binary files produced by Main.c
+├── bin/                # Shared objects (.so) or dynamic link libraries (.dll) produced by *.c in libs
+├── libs/               # Source code for *.c files in bin
+├── lib/                # Custom language libraries
+├── code/               # Scripts from custom languages like .rex, .ll, and .omml
+├── data/               # Data files such as .txt or dumped files
+├── assets/             # Images and sound files
+├── src/                # Source code
+│   ├── Main.c          # Entry point file
+│   └── *.h             # Standalone Header-based C-files without *.c implementations
+├── Makefile.linux      # Linux build configuration
+├── Makefile.windows    # Windows build configuration
+├── Makefile.wine       # Wine build configuration for cross-compiling to Windows on Linux
+├── Makefile.web        # Emscripten build configuration for WebAssembly
+└── README.md           # This file
+└── LICENSE
+└── .gitignore
+```
 
 ### Prerequisites
-- C/C++ Compiler (GCC, Clang, or MSVC)
+- C/C++ Compiler and Debugger (GCC, Clang)
 - Make utility
 - Standard development tools
+- Libraries needed in specific projects: X11 for Linux, user32, gdi32, winmm for Windows
 
-### Build Steps
-
-1. Navigate to project directory:
-```bash
-cd Gui_OMML
+## Build & Run
+To build the project on a Linux system:
+```sh
+cd <Project>
+make -f Makefile.linux all
 ```
 
-2. Build the project:
-```bash
-make -f Makefile.(os) all
+For clean rebuild:
+```sh
+make -f Makefile.linux clean
+make -f Makefile.linux all
 ```
 
-3. For clean rebuild:
-```bash
-make -f Makefile.(os) clean
-make -f Makefile.(os) all
+For executing the built application:
+```sh
+make -f Makefile.linux exe
 ```
 
-4. If there are ./bin and ./libs directories, build libs with:
-```bash
-make -f Makefile.(os) cleanlib
-make -f Makefile.(os) lib
+For Windows, use the following commands:
+```sh
+cd <Project>
+make -f Makefile.windows all
+make -f Makefile.windows exe
 ```
 
-### Build Options
-```bash
-make -f Makefile.(os) all         # build output
-make -f Makefile.(os) do        # build + exe output
-make -f Makefile.(os) clean   # Remove build artifacts
+For Wine (cross-compiling to Windows):
+```sh
+cd <Project>
+make -f Makefile.wine all
+make -f Makefile.wine exe
 ```
 
-## Running the Project
-
-Execute the compiled binary:
-
-```bash
-./build/Main(.exe)
+For WebAssembly:
+```sh
+cd <Project>
+make -f Makefile.web all
+make -f Makefile.web exe
 ```
 
-Or using make:
-```bash
-make -f Makefile.(os) exe
-```
-
-## Project Organization
-
-```
-Gui_OMML/
-├── src/
-│   ├── Main.c          # Entry point
-│   └── *.c             # Implementation files
-├── Makefile            # Build configuration
-└── README.md           # This file
-```
-
-## Technical Details
-
-### Language: C/C++
-- Performance-oriented
-- Direct hardware access where needed
-- Memory efficient
-- Widely portable
-
-### Key Technologies
-- Standard C library
-- System-specific libraries as needed
-- Algorithm optimization
-- Efficient data structures
-
-### Code Quality
-- Clean, readable implementation
-- Proper error handling
-- Resource management
-- Well-documented algorithms
-
-## Development Notes
-
-### Architecture Decisions
-- Modular design for reusability
-- Efficient algorithms for performance
-- Clear separation of concerns
-- Extensible structure
-
-### Performance Optimizations
-- Algorithm efficiency
-- Memory layout optimization
-- Cache-conscious programming
-- Minimal overhead
-
-### Portability
-- Cross-platform compatible
-- Platform-specific optimizations where possible
-- Standard library usage
-- No external dependencies (where feasible)
-
-## Troubleshooting
-
-### Build Issues
-- Ensure compiler is installed
-- Check file paths and permissions
-- Verify Make installation
-- Review compiler error messages
-
-### Runtime Issues
-- Check input data validity
-- Verify file accessibility
-- Ensure sufficient memory
-- Review output format
-
-### Performance Issues
-- Check compiler optimization flags
-- Profile hot code paths
-- Review algorithm complexity
-- Consider input size
-
-## Future Improvements
-
-Potential enhancements:
-- Additional optimization opportunities
-- Extended functionality
-- Platform-specific optimizations
-- Performance profiling
-
-## References
-
-For technical background:
-- Algorithm textbooks
-- Computer science references
-- Language documentation
-- Online educational resources
-
----
-
-*Project implementing practical algorithms and data structures in C/C++*
+The project includes multiple makefiles tailored for different platforms, ensuring compatibility and ease of use across various environments.
